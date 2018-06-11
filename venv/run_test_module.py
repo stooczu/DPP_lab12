@@ -130,9 +130,10 @@ if __name__ == '__main__':
                            steps=[{'step_number': 1, 'result': steps_result.get(steps_result2[0]), 'notes': 'result note for passed step 1'},
                                   {'step_number': 2, 'result': steps_result.get(steps_result2[1]), 'notes': 'result note for passed step 2'},
                                   {'step_number': 3, 'result': steps_result.get(steps_result2[2]), 'notes': 'result note for passed step 3'},
-                                  {'step_number': 4, 'result': steps_result.get(steps_result2[3]), 'notes': 'result note for passed step 4'},
-                                  {'step_number': 5, 'result': steps_result.get(steps_result2[4]), 'notes': 'result note for passed step 5'},
-                                  {'step_number': 6, 'result': steps_result.get(steps_result2[5]), 'notes': 'result note for passed step 6'}])
+                                  {'step_number': 4, 'result': steps_result.get(steps_result2[3]), 'notes': 'result note for passed step 4'}
+                                  #{'step_number': 5, 'result': steps_result.get(steps_result2[4]), 'notes': 'result note for passed step 5'},
+                                 #{'step_number': 6, 'result': steps_result.get(steps_result2[5]), 'notes': 'result note for passed step 6'}
+                                   ])
 
         # create a testsuite
         suite = TestLoader().loadTestsFromTestCase(TestSimple2)
