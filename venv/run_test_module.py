@@ -95,7 +95,7 @@ if __name__ == '__main__':
         # print json output
         #pprint(result.jsonify())
 
-        TESTLINK_API_PYTHON_SERVER_URL = "http://192.168.43.253/lib/api/xmlrpc/v1/xmlrpc.php"
+        TESTLINK_API_PYTHON_SERVER_URL = "http:/http://192.168.0.26/lib/api/xmlrpc/v1/xmlrpc.php"
         TESTLINK_API_PYTHON_DEVKEY = "425a0eba97d42c8005a07c7613e359c1"
 
         # tls = testlink.TestLinkHelper( TESTLINK_API_PYTHON_SERVER_URL, TESTLINK_API_PYTHON_DEVKEY).connect(testlink.TestlinkAPIClient)
