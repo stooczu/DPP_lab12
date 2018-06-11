@@ -118,7 +118,7 @@ if __name__ == '__main__':
         steps_result2 = sorted(steps_result.keys())
         test_passed = 'p'
 
-        if 'n' in steps_result.values(): test_passed = 'n'
+        if 'n' in steps_result.values(): test_passed = 'e'
         if 'e' in steps_result.values(): test_passed = 'e'
         if 'f' in steps_result.values(): test_passed = 'f'
 
@@ -153,7 +153,7 @@ if __name__ == '__main__':
         steps_result2 = sorted(steps_result.keys())
         test_passed = 'p'
 
-        if 'n' in steps_result.values(): test_passed = 'f'
+        if 'n' in steps_result.values(): test_passed = 'e'
         if 'e' in steps_result.values(): test_passed = 'e'
         if 'f' in steps_result.values(): test_passed = 'f'
 
