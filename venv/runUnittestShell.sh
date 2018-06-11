@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
+set -e
 
-echo $PWD
+virtualenv venv --distribute -p python3
+source venv/bin/activate
 
-ls -l
-
-python venv/run_test_module.py -o coverage.xml
-##cp -r coverage.xml /var/lib/jenkins/workspace/DPP_lab12/coverage.xml
-##cp -r ./python_unittests_xml /var/lib/jenkins/workspace/DPP_lab12/python_unittests_xml
+pip install -r requirements.txt
+PYTHONPATH=. venv/bin/coverage run run_test_module.py
+PYTHONPATH=. venv/bin/coverage report --omit=venv/*
+PYTHONPATH=. venv/bin/coverage html --omit=venv/*
+PYTHONPATH=. venv/bin/coverage xml --omit=venv/*

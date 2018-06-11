@@ -4,9 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/venv/test_module.py" line="0" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a3e3072-fb3e-4780-9165-3f891aed8ba3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/venv/run_test_module.py" afterPath="$PROJECT_DIR$/venv/run_test_module.py" />
-    </list>
+    <list default="true" id="3a3e3072-fb3e-4780-9165-3f891aed8ba3" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -93,7 +91,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="533" />
     <option name="width" value="1396" />
     <option name="height" value="990" />
@@ -220,7 +218,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
