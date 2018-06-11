@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-virtualenv venv --distribute -p python3
+virtualenv venv --distribute -p python
 source venv/bin/activate
 
 pip install -r requirements.txt
