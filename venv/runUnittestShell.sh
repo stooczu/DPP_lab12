@@ -2,7 +2,6 @@
 set -e
 
 virtualenv venv --distribute -p python
-source venv
 
 pip install -r requirements.txt
 PYTHONPATH=. venv/bin/coverage run run_test_module.py
