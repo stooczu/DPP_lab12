@@ -4,7 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/venv/test_module.py" line="0" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a3e3072-fb3e-4780-9165-3f891aed8ba3" name="Default" comment="" />
+    <list default="true" id="3a3e3072-fb3e-4780-9165-3f891aed8ba3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/venv/runUnittestShell.sh" afterPath="$PROJECT_DIR$/venv/runUnittestShell.sh" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
