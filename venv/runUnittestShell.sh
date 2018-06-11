@@ -2,7 +2,7 @@
 
 cd /venv
 
-find . -name "*run_test_module.py" -print | while read f; do
+find . -name "run_test_module.py" -print | while read f; do
         echo "$f"
         ###
         python3 -m coverage run "$f"
