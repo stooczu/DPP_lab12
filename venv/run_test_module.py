@@ -122,6 +122,7 @@ if __name__ == '__main__':
         if 'e' in steps_result.values(): test_passed = 'e'
         if 'f' in steps_result.values(): test_passed = 'f'
 
+        print(steps_result2)
 
         tls.reportTCResult(None, 2, None, test_passed, 'DPP_lab10_test1', guess=True,
                            testcaseexternalid='1-1',
