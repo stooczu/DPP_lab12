@@ -5,7 +5,7 @@ cd /venv
 find . -name "run_test_module.py" -print | while read f; do
         echo "$f"
         ###
-        python run "$f" -o coverage.xml
+        python "$f" -o coverage.xml
         ###
 done
 
