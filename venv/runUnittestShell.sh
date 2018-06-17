@@ -1,6 +1,6 @@
 
 
-find . -name "*test_module.py" -print | while read f; do
+find . -name "run_test_module.py" -print | while read f; do
         echo "$f"
         ###
         python -m coverage run "$f"

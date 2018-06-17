@@ -81,6 +81,7 @@ class JsonTestResult(TextTestResult):
 
 if __name__ == '__main__':
     # redirector default output of unittest to /dev/null
+	unittest.main(testRunner=xmlrunner.XMLTestRunner(output="./python_unittests_xml"))
     with open(os.devnull, 'w') as null_stream:
         # new a runner and overwrite resultclass of runner
         runner = TextTestRunner(stream=null_stream)
