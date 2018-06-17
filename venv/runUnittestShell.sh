@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
-set -e
 
-virtualenv venv --distribute -p python
 
-PYTHONPATH=. venv run_test_module.py
-PYTHONPATH=. venv report --omit=venv/*
-PYTHONPATH=. venv html --omit=venv/*
-PYTHONPATH=. venv xml --omit=venv/*
+
+find . -name "*test_module.py" -print | while read f; do
+        echo "$f"
+        ###
+        python3 -m coverage run "$f"
+        python3 -m coverage xml -o coverage.xml
+        ###
+done
+
+cp -r ./coverage.xml /var/lib/jenkins/workspace/DPP_laab12/coverage.xml
+cp -r ./python_unittests_xml /var/lib/jenkins/workspace/DPP_lab12/python_unittests_xml
