@@ -8,5 +8,5 @@ find . -name "run_test_module.py" -print | while read f; do
         ###
 done
 
-cp -r ./coverage.xml /var/lib/jenkins/workspace/DPP_lab12/coverage.xml
-cp -r ./python_unittests_xml /var/lib/jenkins/workspace/DPP_lab12/python_unittests_xml
+cp -r ./coverage.xml ~/Downloads/jenkins_2.127_all/data/var/lib/jenkins/workspace/DPP_lab12/coverage.xml
+cp -r ./python_unittests_xml ~/Downloads/jenkins_2.127_all/data/var/lib/jenkins/workspace/DPP_lab12/python_unittests_xml
