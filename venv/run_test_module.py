@@ -1,21 +1,18 @@
-import testlink
 import datetime
 import operator
+import os
+from pprint import pprint
 from unittest import (
     TestCase,
     TestLoader,
     TextTestResult,
     TextTestRunner)
-from pprint import pprint
-import os
 
+import testlink
+from lxml import etree
 # import subprocess
 from test_module import *
 from test_module2 import *
-from lxml import etree
-
-
-
 
 # args = ["python", "test_module.py"]
 # subprocess.call(args)
@@ -81,92 +78,105 @@ class JsonTestResult(TextTestResult):
 
 if __name__ == '__main__':
     # redirector default output of unittest to /dev/null
-	unittest.main(testRunner=xmlrunner.XMLTestRunner(output="./python_unittests_xml"))
-    with open(os.devnull, 'w') as null_stream:
-        # new a runner and overwrite resultclass of runner
-        runner = TextTestRunner(stream=null_stream)
-        runner.resultclass = JsonTestResult
+    unittest.main(testRunner=xmlrunner.XMLTestRunner(output="./python_unittests_xml"))
+with open(os.devnull, 'w') as null_stream:
+    # new a runner and overwrite resultclass of runner
+    runner = TextTestRunner(stream=null_stream)
+    runner.resultclass = JsonTestResult
 
-        # create a testsuite
-        suite = TestLoader().loadTestsFromTestCase(TestSimple)
+    # create a testsuite
+    suite = TestLoader().loadTestsFromTestCase(TestSimple)
 
-        # run the testsuite
-        result = runner.run(suite)
+    # run the testsuite
+    result = runner.run(suite)
 
-        # print json output
-        #pprint(result.jsonify())
+    # print json output
+    # pprint(result.jsonify())
 
-        TESTLINK_API_PYTHON_SERVER_URL = "http://192.168.43.122/lib/api/xmlrpc/v1/xmlrpc.php"
-        TESTLINK_API_PYTHON_DEVKEY = "425a0eba97d42c8005a07c7613e359c1"
+    TESTLINK_API_PYTHON_SERVER_URL = "http://192.168.43.122/lib/api/xmlrpc/v1/xmlrpc.php"
+    TESTLINK_API_PYTHON_DEVKEY = "425a0eba97d42c8005a07c7613e359c1"
 
-        # tls = testlink.TestLinkHelper( TESTLINK_API_PYTHON_SERVER_URL, TESTLINK_API_PYTHON_DEVKEY).connect(testlink.TestlinkAPIClient)
+    # tls = testlink.TestLinkHelper( TESTLINK_API_PYTHON_SERVER_URL, TESTLINK_API_PYTHON_DEVKEY).connect(testlink.TestlinkAPIClient)
 
-        tlh = testlink.TestLinkHelper(TESTLINK_API_PYTHON_SERVER_URL, TESTLINK_API_PYTHON_DEVKEY)
-        tls = testlink.TestlinkAPIClient(tlh._server_url, tlh._devkey, verbose=False)
+    tlh = testlink.TestLinkHelper(TESTLINK_API_PYTHON_SERVER_URL, TESTLINK_API_PYTHON_DEVKEY)
+    tls = testlink.TestlinkAPIClient(tlh._server_url, tlh._devkey, verbose=False)
 
-        print("\n\nProjects count: " + str(tls.countProjects()) + "\n\n")
+    print("\n\nProjects count: " + str(tls.countProjects()) + "\n\n")
 
-        tc_info = tls.getTestCase(None, testcaseexternalid='1-1')
-        #print("\n\n" + str(tc_info) + "\n\n")
+    tc_info = tls.getTestCase(None, testcaseexternalid='1-1')
+    # print("\n\n" + str(tc_info) + "\n\n")
 
-        tc_info = tls.getProjectTestPlans('1')
-        #print("\n\n" + str(tc_info) + "\n\n")
-        # tls.reportTCResult(4, 2, 'SampleBuild', 'f', 'some notes', user='user', platformid='1')
-        date = str(datetime.datetime.now())
-        date.replace("-", "/")
-        date = date[:-7]
-        steps_result = result.jsonify()['TestSimple']['ok']
-        steps_result2 = sorted(steps_result.keys())
-        test_passed = 'p'
+    tc_info = tls.getProjectTestPlans('1')
+    # print("\n\n" + str(tc_info) + "\n\n")
+    # tls.reportTCResult(4, 2, 'SampleBuild', 'f', 'some notes', user='user', platformid='1')
+    date = str(datetime.datetime.now())
+    date.replace("-", "/")
+    date = date[:-7]
+    steps_result = result.jsonify()['TestSimple']['ok']
+    steps_result2 = sorted(steps_result.keys())
+    test_passed = 'p'
 
-        if 'n' in steps_result.values(): test_passed = 'p'
-        if 'e' in steps_result.values(): test_passed = 'p'
-        if 'f' in steps_result.values(): test_passed = 'p'
+    if 'n' in steps_result.values(): test_passed = 'p'
+    if 'e' in steps_result.values(): test_passed = 'p'
+    if 'f' in steps_result.values(): test_passed = 'p'
 
-        print(steps_result)
+    print(steps_result)
 
-        tls.reportTCResult(None, 2, None, test_passed, 'DPP_lab10_test1', guess=True,
-                           testcaseexternalid='1-1',
-                           platformname='NewPlatform',
-                           execduration=TestSimple.elapsed, timestamp=str(date),
-                           steps=[{'step_number': 1, 'result': steps_result.get(steps_result2[0]), 'notes': 'result note for passed step 1'},
-                                  {'step_number': 2, 'result': steps_result.get(steps_result2[1]), 'notes': 'result note for passed step 2'},
-                                  {'step_number': 3, 'result': steps_result.get(steps_result2[2]), 'notes': 'result note for passed step 3'},
-                                  {'step_number': 4, 'result': steps_result.get(steps_result2[3]), 'notes': 'result note for passed step 4'},
-                                  {'step_number': 5, 'result': steps_result.get(steps_result2[4]), 'notes': 'result note for passed step 5'},
-                                  {'step_number': 6, 'result': steps_result.get(steps_result2[5]), 'notes': 'result note for passed step 6'}])
+    tls.reportTCResult(None, 2, None, test_passed, 'DPP_lab10_test1', guess=True,
+                       testcaseexternalid='1-1',
+                       platformname='NewPlatform',
+                       execduration=TestSimple.elapsed, timestamp=str(date),
+                       steps=[{'step_number': 1, 'result': steps_result.get(steps_result2[0]),
+                               'notes': 'result note for passed step 1'},
+                              {'step_number': 2, 'result': steps_result.get(steps_result2[1]),
+                               'notes': 'result note for passed step 2'},
+                              {'step_number': 3, 'result': steps_result.get(steps_result2[2]),
+                               'notes': 'result note for passed step 3'},
+                              {'step_number': 4, 'result': steps_result.get(steps_result2[3]),
+                               'notes': 'result note for passed step 4'},
+                              {'step_number': 5, 'result': steps_result.get(steps_result2[4]),
+                               'notes': 'result note for passed step 5'},
+                              {'step_number': 6, 'result': steps_result.get(steps_result2[5]),
+                               'notes': 'result note for passed step 6'}])
 
-        # create a testsuite
-        suite = TestLoader().loadTestsFromTestCase(TestSimple2)
+    # create a testsuite
+    suite = TestLoader().loadTestsFromTestCase(TestSimple2)
 
-        # run the testsuite
-        result = runner.run(suite)
+    # run the testsuite
+    result = runner.run(suite)
 
-        tc_info = tls.getTestCase(None, testcaseexternalid='1-2')
-        # print("\n\n" + str(tc_info) + "\n\n")
+    tc_info = tls.getTestCase(None, testcaseexternalid='1-2')
+    # print("\n\n" + str(tc_info) + "\n\n")
 
-        tc_info = tls.getProjectTestPlans('1')
-        # print("\n\n" + str(tc_info) + "\n\n")
-        # tls.reportTCResult(4, 2, 'SampleBuild', 'f', 'some notes', user='user', platformid='1')
-        date = str(datetime.datetime.now())
-        date.replace("-", "/")
-        date = date[:-7]
-        steps_result = result.jsonify()['TestSimple2']['ok']
-        steps_result2 = sorted(steps_result.keys())
-        test_passed = 'p'
+    tc_info = tls.getProjectTestPlans('1')
+    # print("\n\n" + str(tc_info) + "\n\n")
+    # tls.reportTCResult(4, 2, 'SampleBuild', 'f', 'some notes', user='user', platformid='1')
+    date = str(datetime.datetime.now())
+    date.replace("-", "/")
+    date = date[:-7]
+    steps_result = result.jsonify()['TestSimple2']['ok']
+    steps_result2 = sorted(steps_result.keys())
+    test_passed = 'p'
 
-        if 'n' in steps_result.values(): test_passed = 'p'
-        if 'e' in steps_result.values(): test_passed = 'p'
-        if 'f' in steps_result.values(): test_passed = 'p'
+    if 'n' in steps_result.values(): test_passed = 'p'
+    if 'e' in steps_result.values(): test_passed = 'p'
+    if 'f' in steps_result.values(): test_passed = 'p'
 
-        tls.reportTCResult(None, 2, None, test_passed, 'DPP_lab10_test2', guess=True,
-                           testcaseexternalid='1-2',
-                           platformname='NewPlatform',
-                           execduration=3.90, timestamp=str(date),
-                           steps=[{'step_number': 1, 'result': steps_result.get(steps_result2[0]),'notes': 'result note for passed step 1'},
-                                  {'step_number': 2, 'result': steps_result.get(steps_result2[1]),'notes': 'result note for passed step 2'},
-                                  {'step_number': 3, 'result': steps_result.get(steps_result2[2]),'notes': 'result note for passed step 3'},
-                                  {'step_number': 4, 'result': steps_result.get(steps_result2[3]),'notes': 'result note for passed step 4'},
-                                  {'step_number': 5, 'result': steps_result.get(steps_result2[4]),'notes': 'result note for passed step 5'},
-                                  {'step_number': 6, 'result': steps_result.get(steps_result2[5]),'notes': 'result note for passed step 6'},
-                                  {'step_number': 7, 'result': steps_result.get(steps_result2[6]),'notes': 'result note for passed step 7'}])
+    tls.reportTCResult(None, 2, None, test_passed, 'DPP_lab10_test2', guess=True,
+                       testcaseexternalid='1-2',
+                       platformname='NewPlatform',
+                       execduration=3.90, timestamp=str(date),
+                       steps=[{'step_number': 1, 'result': steps_result.get(steps_result2[0]),
+                               'notes': 'result note for passed step 1'},
+                              {'step_number': 2, 'result': steps_result.get(steps_result2[1]),
+                               'notes': 'result note for passed step 2'},
+                              {'step_number': 3, 'result': steps_result.get(steps_result2[2]),
+                               'notes': 'result note for passed step 3'},
+                              {'step_number': 4, 'result': steps_result.get(steps_result2[3]),
+                               'notes': 'result note for passed step 4'},
+                              {'step_number': 5, 'result': steps_result.get(steps_result2[4]),
+                               'notes': 'result note for passed step 5'},
+                              {'step_number': 6, 'result': steps_result.get(steps_result2[5]),
+                               'notes': 'result note for passed step 6'},
+                              {'step_number': 7, 'result': steps_result.get(steps_result2[6]),
+                               'notes': 'result note for passed step 7'}])
