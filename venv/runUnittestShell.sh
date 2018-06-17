@@ -3,8 +3,8 @@
 find . -name "run_test_module.py" -print | while read f; do
         echo "$f"
         ###
-        python -m coverage run "$f"
-        python -m coverage xml -o coverage.xml
+        python3 -m coverage run "$f"
+        python3 -m coverage xml -o coverage.xml
         ###
 done
 
