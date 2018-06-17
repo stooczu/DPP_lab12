@@ -9,6 +9,7 @@ from unittest import (
     TextTestRunner)
 
 import testlink
+import xmlrunner
 from lxml import etree
 # import subprocess
 from test_module import *
