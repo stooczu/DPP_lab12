@@ -1,12 +1,10 @@
-#!/usr/bin/env python3
-
 
 
 find . -name "*test_module.py" -print | while read f; do
         echo "$f"
         ###
-        python3 -m coverage run "$f"
-        python3 -m coverage xml -o coverage.xml
+        python -m coverage run "$f"
+        python -m coverage xml -o coverage.xml
         ###
 done
 
